@@ -1,6 +1,0 @@
-<?php
-
-function normVector($v)
-{
-    
-}
