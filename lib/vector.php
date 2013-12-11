@@ -11,12 +11,17 @@ class Vector {
 
     static public function fromPoints(Point $point_a, Point $point_b)
     {
-
+        $vector = new Vector();
+        $vector->x($point_b->x() - $point_a->x());
+        $vector->y($point_b->y() - $point_a->y());
+        $vector->z($point_b->z() - $point_a->z());
+        $vector->refresh();
+        return $vector;
     }
 
-    static public function norm()
+    static public function norm(Vector $v)
     {
-
+        return $v->getNorm();
     }
 
     public function getNorm()

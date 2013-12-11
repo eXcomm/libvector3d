@@ -12,20 +12,32 @@
  */
 class Point {
 
+    public function __construct($x, $y, $z)
+    {
+        $this->_x = $x;
+        $this->_y = $y;
+        $this->_z = $z;
+    }
+
     /**
      * construct point from coordinates.
      */
     static public function fromCoordinates($x, $y, $z)
     {
-
+        $point = new Point($x, $y, $z);
+        return $point;
     }
 
     /**
      * construct point from vector (pointing towards the point).
      */
-    static public function fromVector(Vector $v)
+    static public function fromVector(Vector $vector)
     {
-
+        $point = new Point();
+        $point->x($vector->x);
+        $point->y($vector->y);
+        $point->z($vector->z);
+        return $point;
     }
 
     /**
@@ -33,15 +45,19 @@ class Point {
      */
     public function getVector()
     {
-
+        $vector = new Vector();
+        $vector->x($this->x());
+        $vector->y($this->y());
+        $vector->z($this->z());
+        return $vector;
     }
 
     /**
      * construct a vector from a point instance.
      */
-    static public function vectorFromPoint($point)
+    static public function vectorFromPoint(Point $point)
     {
-        
+        return $point->getVector();
     }
 
     /**
@@ -49,7 +65,10 @@ class Point {
      */
     public function x($x = null)
     {
-
+        if ($x === null) {
+            return $x;
+        }
+        $this->_x = $x;
     }
 
     /**
@@ -57,7 +76,10 @@ class Point {
      */
     public function y($y = null)
     {
-
+        if ($y === null) {
+            return $y;
+        }
+        $this->_y = $y;
     }    
 
     /**
@@ -65,16 +87,19 @@ class Point {
      */
     public function z($z = null)
     {
-
+        if ($z === null) {
+            return $z;
+        }
+        $this->_z = $z;
     }
 
     /** X-coordinate. */
-    protected $_x = 0;
+    protected $_x;
 
     /** Y-coordinate. */
-    protected $_y = 0;
+    protected $_y;
 
     /** Z-coordinate. */
-    protected $_z = 0;
+    protected $_z;
 
 }
