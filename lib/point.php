@@ -66,7 +66,7 @@ class Point {
     public function x($x = null)
     {
         if ($x === null) {
-            return $x;
+            return $this->_x;
         }
         $this->_x = $x;
     }
@@ -77,7 +77,7 @@ class Point {
     public function y($y = null)
     {
         if ($y === null) {
-            return $y;
+            return $this->_y;
         }
         $this->_y = $y;
     }    
@@ -88,7 +88,7 @@ class Point {
     public function z($z = null)
     {
         if ($z === null) {
-            return $z;
+            return $this->_z;
         }
         $this->_z = $z;
     }
