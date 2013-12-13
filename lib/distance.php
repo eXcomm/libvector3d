@@ -12,7 +12,8 @@
  */
 function distancePointPoint(Point $point_a, Point $point_b)
 {
-    
+    $vector = Vector::fromPoints($point_a, $point_b);
+    return $vector->getNorm();
 }
 
 /**
@@ -20,7 +21,7 @@ function distancePointPoint(Point $point_a, Point $point_b)
  */
 function distancePointPath(Point $point, Path $path)
 {
-
+    
 }
 
 /**
