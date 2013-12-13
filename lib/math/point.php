@@ -17,6 +17,7 @@ class Point {
         $this->_x = $x;
         $this->_y = $y;
         $this->_z = $z;
+        $this->_id = '';
     }
 
     /**
@@ -93,6 +94,22 @@ class Point {
         $this->_z = $z;
     }
 
+    /**
+     * get/set ID.
+     */
+    public function id($id = null)
+    {
+        if ($id === null) {
+            return $this->_id;
+        }
+        $this->_id = (string)$id;
+    }
+
+    public function display()
+    {
+        echo $this->_id . '('.$this->_x.';'.$this->_y.';'.$this->_z.')';
+    }
+
     /** X-coordinate. */
     protected $_x;
 
@@ -101,5 +118,8 @@ class Point {
 
     /** Z-coordinate. */
     protected $_z;
+
+    /** ID. */
+    protected $_id;
 
 }

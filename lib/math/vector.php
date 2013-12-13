@@ -33,6 +33,16 @@ class Vector {
         return $this->_norm;
     }
 
+    public function addScalar($scalar)
+    {
+
+    }
+
+    public function multiplyScalar($scalar)
+    {
+        
+    }
+
     public function xyz($x = null, $y = null, $z = null)
     {
         if (($x === null) && ($y === null) && ($z === null)) {
@@ -108,6 +118,21 @@ class Vector {
     protected function calculateNorm()
     {
         return sqrt($this->_x*$this->_x+$this->_y*$this->_y+$this->_z*$this->_z);
+    }
+
+    static public function scalar(Vector $u, Vector $v)
+    {
+
+    }
+
+    static public function cross(Vector $u, Vector $v)
+    {
+
+    }
+
+    static public function det(Vector $u, Vector $v, Vector $w)
+    {
+
     }
 
     /** X-component. */
