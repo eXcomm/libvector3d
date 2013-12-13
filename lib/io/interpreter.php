@@ -26,7 +26,7 @@ class Interpreter {
                         $this->bye();
                         break;
                     default:
-                        echo $next;
+                        echo $cmd;
                 }
             }
         }
@@ -39,6 +39,7 @@ class Interpreter {
 
     protected function point($args)
     {
+        // point arg1 arg2 arg3 arg4 ...
         if (count($args) > 4) {
             if (isset($args[1])&&isset($args[2])&&isset($args[3])&&isset($args[4])) {
                 $x = (float)$args[2];
@@ -56,6 +57,7 @@ class Interpreter {
                 return false;
             }
         }
+        // point arg1 arg2 arg3
         elseif (count($args) == 4) {
             if (isset($args[1])&&isset($args[2])&&isset($args[3])) {
                 $x = (float)$args[1];
@@ -73,6 +75,7 @@ class Interpreter {
                 return false;
             }
         }
+        // point ? ...
         else {
             echo "Wrong arguments.\n";
             return false;
@@ -106,4 +109,4 @@ not yet lol.
 
     protected $_point_counter = 0;
 
-} 
+}
