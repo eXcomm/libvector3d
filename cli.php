@@ -3,13 +3,13 @@
 /**
  * libvector3d
  * 
- * Git:  <https://github.com/younishd/vector>
+ * Git:  <https://git.eliteheberg.fr/younishd/libvector3d>
  * Author:  YouniS Bensalah  <younis.bensalah@riseup.net>  <http://younishd.fr>
  * License:  This program is under a MIT License.
  */
 
 /** List of modules to load at start. */
-$LOAD_MODULES = array(
+$MODULES = array(
     'interpreter.php',
     'point.php',
     'vector.php',
@@ -21,11 +21,11 @@ $LOAD_MODULES = array(
     'determinant.php'
 );
 
-/** Preload function loading all modules from $LOAD_MODULES. */
+/** Preload function loading all modules from $MODULES. */
 function preload()
 {
-    global $LOAD_MODULES;
-    foreach ($LOAD_MODULES as $mod) {
+    global $MODULES;
+    foreach ($MODULES as $mod) {
         if (file_exists($mod)) {
             echo "Loading module $mod...\n";
             include_once $mod;

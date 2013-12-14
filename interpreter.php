@@ -2,7 +2,7 @@
 /**
  * libvector3d
  * 
- * Git:  <https://github.com/younishd/vector>
+ * Git:  <https://git.eliteheberg.fr/younishd/libvector3d>
  * Author:  YouniS Bensalah  <younis.bensalah@riseup.net>  <http://younishd.fr>
  * License:  This program is under a MIT License.
  */
@@ -26,28 +26,40 @@ hello!
             $next = explode(' ', $this->prompt());
             if (!empty($cmd = $next[0])) {
                 switch ($cmd) {
+
                     case 'point':
-                        $this->point($next);
-                        break;
+                    $this->point(array_slice($next, 1));
+                    break;
 
                     case 'vector':
-                        $this->vector($next);
-                        break;
+                    $this->vector(array_slice($next, 1));
+                    break;
+
+                    case 'det':
+                    $this->det(array_slice($next, 1));
+                    break;
+
+                    case 'scalar':
+                    $this->scalar(array_slice($next, 1));
+                    break;
 
                     case 'load':
-                        $this->load($next);
-                        break;
+                    foreach (array_slice($next, 1) as $mod) {
+                        $this->load($mod);
+                    }
+                    break;
 
                     case 'help':
-                        $this->help();
-                        break;
+                    $this->help();
+                    break;
 
                     case 'exit':
-                        $this->bye();
-                        break;
+                    $this->bye();
+                    break;
 
                     default:
-                        echo "$cmd ?\n";
+                    echo "$cmd ?\n";
+
                 }
             }
         }
@@ -75,12 +87,12 @@ bye! ->->
         // 
         // add new point with id.
         // 
-        if (count($args) > 4) {
-            if (isset($args[1])&&isset($args[2])&&isset($args[3])&&isset($args[4])) {
-                $x = (float)$args[2];
-                $y = (float)$args[3];
-                $z = (float)$args[4];
-                $id = (string)$args[1];
+        if (count($args) > 3) {
+            if (isset($args[0])&&isset($args[1])&&isset($args[2])&&isset($args[3])) {
+                $x = (float)$args[1];
+                $y = (float)$args[2];
+                $z = (float)$args[3];
+                $id = (string)$args[0];
                 $point = Point::fromCoordinates($x, $y, $z);
                 $point->id($id);
                 $this->_grid['point'][$point->id()] = $point;
@@ -101,11 +113,11 @@ bye! ->->
         // 
         // add new unnamed point.
         // 
-        elseif (count($args) == 4) {
-            if (isset($args[1])&&isset($args[2])&&isset($args[3])) {
-                $x = (float)$args[1];
-                $y = (float)$args[2];
-                $z = (float)$args[3];
+        elseif (count($args) == 3) {
+            if (isset($args[0])&&isset($args[1])&&isset($args[2])) {
+                $x = (float)$args[0];
+                $y = (float)$args[1];
+                $z = (float)$args[2];
                 $id = 'p'.$this->_point_counter++;
                 $point = Point::fromCoordinates($x, $y, $z);
                 $point->id($id);
@@ -125,13 +137,14 @@ bye! ->->
         // 
         // print point id.
         // 
-        elseif (count($args) == 2) {
-            if (isset($args[1])) {
-                if (isset($this->_grid['point'][$args[1]])) {
-                    $this->_grid['point'][$args[1]]->display();
+        elseif (count($args) == 1) {
+            if (isset($args[0])) {
+                if (isset($this->_grid['point'][$args[0]])) {
+                    $this->_grid['point'][$args[0]]->display();
+                    echo "\n";
                 }
                 else {
-                    echo $args[1].": Undefined point.\n";
+                    echo $args[0].": Undefined point.\n";
                 }
             }
             else {
@@ -143,7 +156,7 @@ bye! ->->
         // 
         // print all points.
         // 
-        elseif (count($args) == 1) {
+        elseif (count($args) == 0) {
             if (empty($this->_grid['point'])) {
                 echo "No points defined so far.\n";
             }
@@ -175,12 +188,12 @@ bye! ->->
         // 
         // add new vector with id.
         // 
-        if (count($args) > 4) {
-            if (isset($args[1])&&isset($args[2])&&isset($args[3])&&isset($args[4])) {
-                $x = (float)$args[2];
-                $y = (float)$args[3];
-                $z = (float)$args[4];
-                $id = (string)$args[1];
+        if (count($args) > 3) {
+            if (isset($args[0])&&isset($args[1])&&isset($args[2])&&isset($args[3])) {
+                $x = (float)$args[1];
+                $y = (float)$args[2];
+                $z = (float)$args[3];
+                $id = (string)$args[0];
                 $vector = Vector::fromComponents($x, $y, $z);
                 $vector->id($id);
                 $this->_grid['vector'][$vector->id()] = $vector;
@@ -201,11 +214,11 @@ bye! ->->
         // 
         // add new unnamed vector.
         // 
-        elseif (count($args) == 4) {
-            if (isset($args[1])&&isset($args[2])&&isset($args[3])) {
-                $x = (float)$args[1];
-                $y = (float)$args[2];
-                $z = (float)$args[3];
+        elseif (count($args) == 3) {
+            if (isset($args[0])&&isset($args[1])&&isset($args[2])) {
+                $x = (float)$args[0];
+                $y = (float)$args[1];
+                $z = (float)$args[2];
                 $id = 'v'.$this->_vector_counter++;
                 $vector = Vector::fromComponents($x, $y, $z);
                 $vector->id($id);
@@ -225,13 +238,14 @@ bye! ->->
         // 
         // print vector id.
         //
-        elseif (count($args) == 2) {
-            if (isset($args[1])) {
-                if (isset($this->_grid['vector'][$args[1]])) {
-                    $this->_grid['vector'][$args[1]]->display();
+        elseif (count($args) == 1) {
+            if (isset($args[0])) {
+                if (isset($this->_grid['vector'][$args[0]])) {
+                    $this->_grid['vector'][$args[0]]->display();
+                    echo "\n";
                 }
                 else {
-                    echo $args[1].": Undefined vector.\n";
+                    echo $args[0].": Undefined vector.\n";
                 }
             }
             else {
@@ -243,7 +257,7 @@ bye! ->->
         // 
         // print all vectors.
         //
-        elseif (count($args) == 1) {
+        elseif (count($args) == 0) {
             if (empty($this->_grid['vector'])) {
                 echo "No vectors defined so far.\n";
             }
@@ -264,6 +278,45 @@ bye! ->->
         }
     }
 
+    protected function det($args)
+    {
+        if (count($args) == 3) {
+            if (isset($args[0])&&isset($args[1])&&isset($args[2])) {
+                echo 'det('.$args[0].', '.$args[1].', '.$args[2].') = '.Vector::det($this->_grid['vector'][$args[0]],$this->_grid['vector'][$args[1]],$this->_grid['vector'][$args[2]])."\n";
+            }
+        }
+        else {
+            echo "Determinant needs 3 vectors as arguments.\ndet u v w\n";
+        }
+    }
+
+    protected function scalar($args)
+    {
+        if (count($args) == 2) {
+            if (isset($args[0])&&isset($args[1])&&isset($this->_grid['vector'][$args[0]])&&isset($this->_grid['vector'][$args[1]])) {
+                echo '<';
+                $this->_grid['vector'][$args[0]]->display();
+                echo ', ';
+                $this->_grid['vector'][$args[1]]->display();
+                echo '> = '.Vector::scalar($this->_grid['vector'][$args[0]], $this->_grid['vector'][$args[1]])."\n";
+            }
+            else {
+                echo "Scalar product needs 2 vectors as arguments.\nscalar u v\n";
+            }
+        }
+    }
+
+    static public function load($module)
+    {
+        if (file_exists($module)) {
+            echo "Loading module $module...\n";
+            include_once $module;
+        }
+        else {
+            die("Error: Module $module not found.\n");
+        }
+    }
+
     public function help()
     {
         echo
@@ -279,7 +332,7 @@ vector3d-cli
 
 a CLI interpreter for libvector3d written in PHP.
 
-Git:  <https://github.com/younishd/vector>
+Git:  <https://git.eliteheberg.fr/younishd/libvector3d>
 Author:  YouniS Bensalah  <younis.bensalah@riseup.net>  <http://younishd.fr>
 
 

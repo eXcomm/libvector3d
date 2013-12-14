@@ -2,7 +2,7 @@
 /**
  * libvector3d
  * 
- * Git:  <https://github.com/younishd/vector>
+ * Git:  <https://git.eliteheberg.fr/younishd/libvector3d>
  * Author:  YouniS Bensalah  <younis.bensalah@riseup.net>  <http://younishd.fr>
  * License:  This program is under a MIT License.
  */
@@ -126,17 +126,17 @@ class Vector {
 
     static public function scalar(Vector $u, Vector $v)
     {
-
+        return $u->x()*$v->x()+$u->y()*$v->y()+$u->z()*$v->z();
     }
 
     static public function cross(Vector $u, Vector $v)
     {
-
+        return self::fromComponents($u->y()*$v->z()-$u->z()*$v->y(),$u->z()*$v->x()-$u->x()*$v->z(),$u->x()*$v->y()-$u->y()*$v->x());
     }
 
     static public function det(Vector $u, Vector $v, Vector $w)
     {
-
+        return $u->x()*$v->y()*$w->z()+$u->y()*$v->z()*$w->x()+$u->z()*$v->x()*$w->y()-$u->z()*$v->y()*$w->x()-$u->y()*$v->x()*$w->z()-$u->x()*$v->z()*$w->y();
     }
 
     /**
@@ -152,7 +152,7 @@ class Vector {
 
     public function display()
     {
-        echo $this->_id . '('.$this->_x.';'.$this->_y.';'.$this->_z.')';
+        echo $this->_id . '['.$this->_x.';'.$this->_y.';'.$this->_z.']';
     }
 
     /** X-component. */
