@@ -14,7 +14,7 @@ class Interpreter {
         echo "
 vector3d-cli
 
------------>
+     ---->
    /|   \
      \  /
       \/
@@ -324,8 +324,7 @@ bye! ->->
 
 vector3d-cli
 
------------>
-
+     ---->
    /|   \
      \  /
       \/
