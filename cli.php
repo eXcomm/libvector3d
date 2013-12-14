@@ -10,15 +10,15 @@
 
 /** List of modules to load at start. */
 $LOAD_MODULES = array(
-    'lib/io/interpreter.php',
-    'lib/math/point.php',
-    'lib/math/vector.php',
-    'lib/math/path.php',
-    'lib/math/plan.php',
-    'lib/math/sphere.php',
-    'lib/math/matrix.php',
-    'lib/math/distance.php',
-    'lib/math/determinant.php'
+    'interpreter.php',
+    'point.php',
+    'vector.php',
+    'path.php',
+    'plan.php',
+    'sphere.php',
+    'matrix.php',
+    'distance.php',
+    'determinant.php'
 );
 
 /** Preload function loading all modules from $LOAD_MODULES. */

@@ -11,6 +11,15 @@ libvector3d
 A 3D vector library written in PHP.
 
 
+libvector3d comes along with a CLI interpreter:
+vector3d-cli
+
+To run vector3d-cli, execute:
+
+    $ ./cli.php
+
+Then just type "help" for more information.
+
 
 Git:  <https://github.com/younishd/vector>
 

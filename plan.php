@@ -24,6 +24,9 @@ class Plan {
         // u: AB
         // v: AC
         // p: OA
+        $u = Vector::fromPoints($point_a, $point_b);
+        $v = Vector::fromPoints($point_a, $point_c);
+        $point = Vector::fromComponents($point_a->x(), $point_a->y(), $point_a->z());
     }
 
     static public function fromNormalVectorPointVector($normal_vector, $point_vector)

@@ -35,12 +35,16 @@ class Vector {
 
     public function addScalar($scalar)
     {
-
+        $this->_x += $scalar;
+        $this->_y += $scalar;
+        $this->_z += $scalar;
     }
 
     public function multiplyScalar($scalar)
     {
-        
+        $this->_x *= $scalar;
+        $this->_y *= $scalar;
+        $this->_z *= $scalar;
     }
 
     public function xyz($x = null, $y = null, $z = null)
@@ -135,6 +139,22 @@ class Vector {
 
     }
 
+    /**
+     * get/set ID.
+     */
+    public function id($id = null)
+    {
+        if ($id === null) {
+            return $this->_id;
+        }
+        $this->_id = (string)$id;
+    }
+
+    public function display()
+    {
+        echo $this->_id . '('.$this->_x.';'.$this->_y.';'.$this->_z.')';
+    }
+
     /** X-component. */
     protected $_x = 0;
 
@@ -146,5 +166,8 @@ class Vector {
 
     /** Norm. */
     protected $_norm = 0;
+
+    /** ID. */
+    protected $_id = '';
 
 }
