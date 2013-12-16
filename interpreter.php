@@ -43,6 +43,10 @@ hello!
                     $this->scalar(array_slice($next, 1));
                     break;
 
+                    case 'cross':
+                    $this->cross(array_slice($next, 1));
+                    break;
+
                     case 'load':
                     foreach (array_slice($next, 1) as $mod) {
                         $this->load($mod);
@@ -139,8 +143,8 @@ bye! ->->
         // 
         elseif (count($args) == 1) {
             if (isset($args[0])) {
-                if (isset($this->_grid['point'][$args[0]])) {
-                    $this->_grid['point'][$args[0]]->display();
+                if ($p = $this->pnt($args[0])) {
+                    $p->display();
                     echo "\n";
                 }
                 else {
@@ -240,8 +244,8 @@ bye! ->->
         //
         elseif (count($args) == 1) {
             if (isset($args[0])) {
-                if (isset($this->_grid['vector'][$args[0]])) {
-                    $this->_grid['vector'][$args[0]]->display();
+                if ($u = $this->vec($args[0])) {
+                    $u->display();
                     echo "\n";
                 }
                 else {
@@ -281,8 +285,8 @@ bye! ->->
     protected function det($args)
     {
         if (count($args) == 3) {
-            if (isset($args[0])&&isset($args[1])&&isset($args[2])) {
-                echo 'det('.$args[0].', '.$args[1].', '.$args[2].') = '.Vector::det($this->_grid['vector'][$args[0]],$this->_grid['vector'][$args[1]],$this->_grid['vector'][$args[2]])."\n";
+            if (isset($args[0]) && isset($args[1]) && isset($args[2]) && $u = $this->vec($args[0]) && $v = $this->vec($args[1]) && $w = $this->vec($args[2])) {
+                echo 'det('.$args[0].', '.$args[1].', '.$args[2].') = '.Vector::det($u, $v, $w)."\n";
             }
         }
         else {
@@ -293,12 +297,12 @@ bye! ->->
     protected function scalar($args)
     {
         if (count($args) == 2) {
-            if (isset($args[0])&&isset($args[1])&&isset($this->_grid['vector'][$args[0]])&&isset($this->_grid['vector'][$args[1]])) {
+            if (isset($args[0]) && isset($args[1]) && $u = $this->vec($args[0]) && $v = $this->vec($args[1])) {
                 echo '<';
-                $this->_grid['vector'][$args[0]]->display();
+                $u->display();
                 echo ', ';
-                $this->_grid['vector'][$args[1]]->display();
-                echo '> = '.Vector::scalar($this->_grid['vector'][$args[0]], $this->_grid['vector'][$args[1]])."\n";
+                $v->display();
+                echo '> = ' . Vector::scalar($u, $v) . "\n";
             }
             else {
                 echo "Scalar product needs 2 vectors as arguments.\nscalar u v\n";
@@ -315,6 +319,22 @@ bye! ->->
         else {
             die("Error: Module $module not found.\n");
         }
+    }
+
+    protected function vec($id)
+    {
+        if (isset($this->_grid['vector'][$id])) {
+            return $this->_grid['vector'][$id];
+        }
+        return false;
+    }
+
+    protected function pnt($id)
+    {
+        if (isset($this->_grid['point'][$id])) {
+            return $this->_grid['point'][$id];
+        }
+        return false;
     }
 
     public function help()
