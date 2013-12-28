@@ -285,7 +285,7 @@ bye! ->->
     protected function det($args)
     {
         if (count($args) == 3) {
-            if (isset($args[0]) && isset($args[1]) && isset($args[2]) && $u = $this->vec($args[0]) && $v = $this->vec($args[1]) && $w = $this->vec($args[2])) {
+            if (isset($args[0]) && isset($args[1]) && isset($args[2]) && ($u = $this->vec($args[0])) && ($v = $this->vec($args[1])) && $w = ($this->vec($args[2]))) {
                 echo 'det('.$args[0].', '.$args[1].', '.$args[2].') = '.Vector::det($u, $v, $w)."\n";
             }
         }
